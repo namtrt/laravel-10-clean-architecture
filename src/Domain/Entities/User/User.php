@@ -5,9 +5,13 @@ namespace Src\Domain\Entities\User;
 class User
 {
     private readonly int $id;
+
     private string $name;
+
     private string $email;
+
     private string $verifiedAt;
+
     private string $createdAt;
 
     public function __construct(int $id, string $name, string $email, string $verifiedAt, string $createdAt)

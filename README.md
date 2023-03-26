@@ -45,7 +45,13 @@ composer install
 php artisan test
 ```
 
+## Executes check code quality
+```bash
+./vendor/bin/rector process
+```
+
 ## Useful link
 - command/bus: https://tactician.thephpleague.com/installation/
 - laravel-jwt https://github.com/tymondesigns/jwt-auth
+- code quality: https://getrector.com/documentation
 

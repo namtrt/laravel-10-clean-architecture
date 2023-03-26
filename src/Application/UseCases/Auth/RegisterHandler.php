@@ -2,7 +2,6 @@
 
 namespace Src\Application\UseCases\Auth;
 
-use Src\Application\DTOs\Auth\ProfileCommand;
 use Src\Application\DTOs\Auth\RegisterCommand;
 use Src\Application\ViewModels\ProfileViewModel;
 use Src\Domain\Entities\User\Exceptions\UserEmailExistException;

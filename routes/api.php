@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('auth')->group(function () {
+Route::prefix('auth')->group(static function () : void {
     Route::post('login', [AuthController::class, 'login']);
     Route::get('profile', [AuthController::class, 'profile'])->middleware('auth:api');
     Route::post('register', [AuthController::class, 'register']);

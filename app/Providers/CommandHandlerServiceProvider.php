@@ -14,6 +14,7 @@ class CommandHandlerServiceProvider extends ServiceProvider
             foreach (config('command_handler') as $command => $handler) {
                 $locator->addHandler(app()->make($handler), $command);
             }
+
             return $locator;
         });
     }
