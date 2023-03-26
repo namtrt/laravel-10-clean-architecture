@@ -1,0 +1,53 @@
+version: '2.2'
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.nginx
+      args:
+        PHP_FPM_SERVER: php
+        PHP_FPM_PORT: 9000
+    ports:
+      - ${DOCKER_NGINX_EXTERNAL_PORT-8000}:80
+    depends_on:
+      - php
+    links:
+      - php
+    volumes:
+      - .:/var/www/
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        XDEBUG: "true"
+    volumes:
+      - .:/var/www/
+      - ./docker/php.ini:/usr/local/etc/php/conf.d/php.ini
+    environment:
+      APP_ENV: local
+    links:
+      - mysql
+      - redis
+
+  redis:
+      image: redis:5.0.6
+      ports:
+          - ${DOCKER_REDIS_EXTERNAL_PORT-6379}:6379
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysqldb:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: app_db
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    ports:
+      - ${DOCKER_MYSQL_EXTERNAL_PORT-3309}:3306
+    command: [ 'mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
+
+volumes:
+    mysqldb:
+        driver: local
