@@ -45,9 +45,6 @@ composer install
 php artisan test
 ```
 
-## Documentation
-API documentation with Swagger format is available here: [http://localhost:{$PORT}/api/documentation](http://localhost:8080/api/documentation)
-
 ## Useful link
 - command/bus: https://tactician.thephpleague.com/installation/
 - laravel-jwt https://github.com/tymondesigns/jwt-auth
